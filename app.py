@@ -74,7 +74,7 @@ def get_all():
 def get_by_id(id_):
     try:
         employee=Employee.query.filter_by(id=id_).first()
-        return jsonify(book.serialize())
+        return jsonify(employee.serialize())
     except Exception as e:
      return(str(e))
 
