@@ -66,7 +66,7 @@ def add_employee_form():
 def get_all():
     try:
         employees=Employee.query.all()
-        return  jsonify([e.serialize() for e in employees])
+        return render_template("index.html",employee_html=employees)
     except Exception as e:
      return(str(e))
 
@@ -74,7 +74,7 @@ def get_all():
 def get_by_id(id_):
     try:
         employee=Employee.query.filter_by(id=id_).first()
-        return jsonify(employee.serialize())
+        return render_template("show.html",employee_html=employee)
     except Exception as e:
      return(str(e))
 
