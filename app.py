@@ -1,6 +1,7 @@
 
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask import redirect
 import os
 
 app = Flask(__name__)
@@ -12,9 +13,9 @@ db = SQLAlchemy(app)
 
 from models import Employee
 
-@app.route("/")
-def hello():
-    return "Hello DevOps!"
+# @app.route("/")
+# def hello():
+#     return "Hello DevOps!"
 
 @app.route("/name/<name>")
 def get_employee_name(name):
@@ -62,7 +63,7 @@ def add_employee_form():
             return(str(e))
     return render_template("getdata.html")
 
-@app.route("/getall")
+@app.route("/")
 def get_all():
     try:
         employees=Employee.query.all()
@@ -77,6 +78,25 @@ def get_by_id(id_):
         return render_template("show.html",employee_html=employee)
     except Exception as e:
      return(str(e))
+@app.route("/update/<id_>",methods=["GET","POST"])
+def update(id_):
+    employee=Employee.query.filter_by(id=id_).first()
+    if request.method == "POST":
+        try:
+            name=request.form.get("newname")
+            age=request.form.get("newage")
+            address=request.form.get("newaddress")
+            employee.name=name
+            employee.age=age
+            employee.address=address
+            db.session.commit()
+            return render_template("show.html",employee_html=employee)
+        except Exception as e:
+            return redirect("/")
+    else:
+        return render_template("update.html",employee=employee)
+    
+
 
 if __name__ == '__main__':
     app.run()

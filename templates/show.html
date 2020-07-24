@@ -9,10 +9,32 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	    crossorigin="anonymous">
 </head>
-<body>
-	<p>{{employee_html.name}}</p>
-	<p>{{employee_html.age}}</p>
-	<p>{{employee_html.address}}</p>
+<style>
+ {
+  border-style: solid;
+  border-color: #92a8d1;
+}
+
+div {
+  border-style: solid;
+  border-color: #92a8d1;
+}
+</style>
+</div>
+
+	<div class="container">        
+    <table class="table table-bordered">
+    <thead>
+    <tr>
+    <th>NAME</th>
+    <th>AGE</th>
+    <th>ADDRESS</th>
+    <tr>
+ 	<td>{{employee_html.name}}</td>
+	<td>{{employee_html.age}}</td>
+	<td>{{employee_html.address}}</td>
+</tr>
+</tr>
+</table>
 </body>
 </html>
-	
