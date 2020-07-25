@@ -11,10 +11,14 @@
 </head>
 <style>
  {
-  border-style: solid;
-  border-color: #92a8d1;
+  border-style: dotted;
+  border-color: #fc032c;
 }
-
+div {
+  border-style: solid;
+  border-color: #fc032c;
+}
+</div
 </style>
 
 
@@ -25,13 +29,13 @@
         <th>name</th>
         <th>age</th>
         <th>address</th>
-        <td><a>href="http://localhost:5000/add/form">getdata.html</a></td>
-        <td><button type="submit " class="btn btn-primary " style="float:right ">add</button></td>
-        <td><a>href="http://localhost:5000/get/1">show.html</a></td>
-        <td><a>href="http://localhost:5000/">index.html</a></td>
-        <td><a>href="http://localhost:5000/update/1">update.html</a></td>
-    </tr>
-    </thead>
+        <td><a href="/add/form" class="btn btn-primary">add new</a></td>
+
+        
+        
+   </tr>
+</thead>
+    
 </div>
     <tbody>
 	{% for employee in employee_html %}
@@ -39,9 +43,11 @@
     	<td>{{employee.name}}</td>
     	<td>{{employee.age}}</td>
     	<td>{{employee.address}}</td>
+    	<td><a href="/get/{{employee.id}}">show</a> <a href="/update/{{employee.id}}">edit</a></td>
 
     </tr>
 	{% endfor %}
+	    
 	
 </tbody>
 </table>

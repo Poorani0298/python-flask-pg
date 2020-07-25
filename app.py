@@ -58,7 +58,8 @@ def add_employee_form():
             )
             db.session.add(employee)
             db.session.commit()
-            return "Employee added. employee id={}".format(employee.id)
+            #return "Employee added. employee id={}".format(employee.id)
+            return redirect("/")
         except Exception as e:
             return(str(e))
     return render_template("getdata.html")
