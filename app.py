@@ -1,5 +1,5 @@
 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask import redirect
 import os
@@ -96,8 +96,13 @@ def update(id_):
             return redirect("/")
     else:
         return render_template("update.html",employee=employee)
-    
-
-
+@app.route("/delete", methods=["POST"])
+def delete():
+    id= request.form.get("id")
+    employee=Employee.query.filter_by(id=id).first()
+    db.session.delete(employee)
+    db.session.commit()
+    flash("successfully removed")
+    return redirect("/")
 if __name__ == '__main__':
     app.run()

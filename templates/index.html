@@ -22,7 +22,16 @@ div {
 </style>
 
 
-	<div class="container">        
+	<div class="container">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class=flashes>
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}       
     <table class="table table-bordered">
     <thead>
     <tr>
@@ -30,7 +39,7 @@ div {
         <th>age</th>
         <th>address</th>
         <td><a href="/add/form" class="btn btn-primary">add new</a></td>
-        
+
         
         
         
@@ -45,10 +54,18 @@ div {
     	<td>{{employee.age}}</td>
     	<td>{{employee.address}}</td>
     	<td><a href="/get/{{employee.id}}">show</a> <a href="/update/{{employee.id}}">edit</a></td>
+    		
+    	<td><form method="POST" action="/delete" style="display: inline">
+              <input type="hidden" value="{{employee.id}}" name="id">
+              <input type="submit" value="Delete" onclick="alert('are u sure to delete!')">
+
+            </form>
+        </td>
 
 
     </tr>
 	{% endfor %}
+
 	    
 	
 </tbody>
