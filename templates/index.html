@@ -20,8 +20,6 @@ div {
 }
 </div
 </style>
-
-
 	<div class="container">
 	{% with messages = get_flashed_messages() %}
 		{% if messages %}
@@ -33,38 +31,46 @@ div {
 		{% endif %}
 	{% endwith %}       
     <table class="table table-bordered">
-    <thead>
+<thead>
     <tr>
         <th>name</th>
         <th>age</th>
         <th>address</th>
         <td><a href="/add/form" class="btn btn-primary">add new</a></td>
-
-        
-        
-        
-   </tr>
+    </tr>
 </thead>
     
 </div>
+
     <tbody>
-	{% for employee in employee_html %}
+    {% for employee in employee_html %}
 	<tr>
     	<td>{{employee.name}}</td>
     	<td>{{employee.age}}</td>
     	<td>{{employee.address}}</td>
     	<td><a href="/get/{{employee.id}}">show</a> <a href="/update/{{employee.id}}">edit</a></td>
     		
-    	<td><form method="POST" action="/delete" style="display: inline">
-              <input type="hidden" value="{{employee.id}}" name="id">
-              <input type="submit" value="Delete" onclick="alert('are u sure to delete!')">
-
+    	<td><form id="delete_form" method="POST" action="/delete" style="display: inline">
+            <input type="hidden" value="{{employee.id}}" name="id">
+            <input type="button" value="Delete" onclick="myFunction()">
             </form>
         </td>
-
-
-    </tr>
+	</tr>
 	{% endfor %}
+	<script>
+            function myFunction() {
+  				var a=confirm("Are you sure to delete!");
+  				console.log(a)
+  				if (a == true) {
+    				
+    				document.getElementById("delete_form").submit();
+
+ 				} else {
+    				console.log(a)
+				}
+
+			}
+			</script>
 
 	    
 	
